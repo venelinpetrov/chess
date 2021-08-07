@@ -21,6 +21,13 @@
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  },
+  "globals": {
+    "require": true,
+    "process": true,
+    "module": true,
+    "__dirname": true
   }
 }

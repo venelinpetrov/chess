@@ -1,11 +1,5 @@
-import { CX } from './Test';
-
 function App() {
-  return (
-    <div className="App">
-      <CX></CX>
-    </div>
-  );
+  return <div className="App">Hi!</div>;
 }
 
 export default App;

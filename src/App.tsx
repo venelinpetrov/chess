@@ -26,6 +26,29 @@ const getPossibleMoves = ({
   ];
 };
 
+const movePiece = ({
+  board,
+  piece,
+  i,
+  j,
+}: {
+  board: Board;
+  piece: PieceProps;
+  i: number;
+  j: number;
+}) => {
+  const boardClone = clone(board);
+  if (canMove({ piece, board, i, j })) {
+    boardClone[i][j] = {
+      kind: piece.kind,
+      color: piece.color,
+    };
+    boardClone[piece.coords[0]][piece.coords[1]] = null;
+  }
+
+  return boardClone;
+};
+
 const canMove = ({
   piece,
   board,
@@ -90,16 +113,9 @@ const Board = () => {
   const handleSquareClick = useCallback(
     (i, j) => () => {
       if (selectedPiece) {
-        const boardClone = clone(board);
-        if (canMove({ piece: selectedPiece, board: boardClone, i, j })) {
-          boardClone[i][j] = {
-            kind: selectedPiece.kind,
-            color: selectedPiece.color,
-          };
-          boardClone[selectedPiece.coords[0]][selectedPiece.coords[1]] = null;
-          setBoard(boardClone);
-          setSelectedPiece(null);
-        }
+        const newBoard = movePiece({ board, piece: selectedPiece, i, j });
+        setBoard(newBoard);
+        setSelectedPiece(null);
       }
       console.log(i, j);
     },

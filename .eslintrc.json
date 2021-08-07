@@ -22,7 +22,8 @@
     "quotes": ["error", "single"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "max-len": ["error", { "code": 100 }]
   },
   "globals": {
     "require": true,

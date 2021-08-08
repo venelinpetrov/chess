@@ -12,8 +12,7 @@ export const Piece = (p: PieceProps) => {
   return (
     <div
       className="piece"
-      onClick={e => {
-        e.stopPropagation();
+      onClick={() => {
         onSelect(p);
       }}
     >

@@ -1,6 +1,6 @@
 import { clone } from 'ramda';
 import { PieceProps } from '../components/Piece';
-import { Board } from '../components/Board';
+import { BoardArray } from '../components/Board';
 
 export type MovesList = Array<[number, number]>;
 
@@ -42,7 +42,7 @@ export const getPossibleMoves = ({
   board,
 }: {
   piece: PieceProps;
-  board: Board;
+  board: BoardArray;
 }): MovesList => {
   let possibleMoves: MovesList = [];
 
@@ -63,13 +63,15 @@ export const movePiece = ({
   piece,
   i,
   j,
+  cb,
 }: {
-  board: Board;
+  board: BoardArray;
   piece: PieceProps;
   i: number;
   j: number;
+  cb?: (board: BoardArray) => void;
 }) => {
-  // Early return If you try to move piece to the same square it occupies
+  // Early return if you try to move piece to the same square it occupies
   if (piece.coords[0] == i && piece.coords[1] == j) {
     return board;
   }
@@ -86,6 +88,9 @@ export const movePiece = ({
 
     // Remove the piece from its previous square
     boardClone[piece.coords[0]][piece.coords[1]] = null;
+    if (typeof cb == 'function') {
+      cb(boardClone);
+    }
 
     return boardClone;
   }
@@ -100,7 +105,7 @@ export const canMove = ({
   j,
 }: {
   piece: PieceProps;
-  board: Board;
+  board: BoardArray;
   i: number;
   j: number;
 }) => {

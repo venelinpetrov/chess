@@ -26,7 +26,8 @@
     "max-len": ["error", { "code": 100 }],
     "arrow-parens": ["error", "as-needed"],
     "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "no-debugger": "warn"
   },
   "globals": {
     "require": true,

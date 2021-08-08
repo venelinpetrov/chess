@@ -52,9 +52,8 @@ export const canMove = ({
   board: Board;
   i: number;
   j: number;
-}) =>
-  Boolean(
-    getPossibleMoves({ piece, board }).find(
-      move => move[0] == i && move[1] == j
-    )
+}) => {
+  return getPossibleMoves({ piece, board }).some(
+    move => move[0] == i && move[1] == j
   );
+};

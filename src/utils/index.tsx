@@ -27,16 +27,19 @@ export const movePiece = ({
   i: number;
   j: number;
 }) => {
-  const boardClone = clone(board);
   if (canMove({ piece, board, i, j })) {
+    const boardClone = clone(board);
+
     boardClone[i][j] = {
       kind: piece.kind,
       color: piece.color,
     };
     boardClone[piece.coords[0]][piece.coords[1]] = null;
+
+    return boardClone;
   }
 
-  return boardClone;
+  return board;
 };
 
 export const canMove = ({

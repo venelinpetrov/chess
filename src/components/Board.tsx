@@ -51,21 +51,19 @@ export const Board = () => {
 
   return (
     <div className="board">
-      {board.map((row, i) => (
-        <div key={i} className="row">
-          {row.map((cell, j) => (
-            <div key={j} className="cell" onClick={handleSquareClick(i, j)}>
-              {cell
-                ? Piece({
-                    ...cell,
-                    onSelect: handlePieceSelect,
-                    coords: [i, j],
-                  })
-                : null}
-            </div>
-          ))}
-        </div>
-      ))}
+      {board.map((row, i) =>
+        row.map((cell, j) => (
+          <div key={j} className="cell" onClick={handleSquareClick(i, j)}>
+            {cell
+              ? Piece({
+                  ...cell,
+                  onSelect: handlePieceSelect,
+                  coords: [i, j],
+                })
+              : null}
+          </div>
+        ))
+      )}
     </div>
   );
 };

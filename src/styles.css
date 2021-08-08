@@ -1,16 +1,19 @@
 .board {
+  display: grid;
+  width: 66vw;
+  height: 66vw;
+  min-width: 500px;
+  min-height: 500px;
+  max-width: 900px;
+  max-height: 900px;
+  gap: 0;
+  justify-content: start;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
   border: 1px solid red;
   display: flex;
   justify-content: center;

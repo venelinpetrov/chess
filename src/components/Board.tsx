@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
+import { clone } from 'ramda';
 import { Piece, PieceProps } from './Piece';
-import { movePiece } from '../utils';
+import { getPossibleMoves, movePiece } from '../utils';
 
-export type BoardArray = Array<Array<Piece | null>>;
+export interface Square {
+  piece: Piece | null;
+  attackedBy: Piece[];
+  showLegalMove: boolean;
+}
+
+export type BoardArray = Square[][];
 
 const isPieceSelected = ({
   piece,
@@ -66,16 +73,16 @@ export const Board = ({ initialBoard }: { initialBoard: BoardArray }) => {
     <div className="panel">
       <div className="board">
         {board.map((row, i) =>
-          row.map((cell, j) => (
+          row.map((square, j) => (
             <div
               key={j}
               className="cell"
               onClick={handleSquareClick(i, j)}
               role="cell"
             >
-              {cell
+              {square.piece != null
                 ? Piece({
-                    ...cell,
+                    ...square.piece,
                     coords: [i, j],
                     selected: isPieceSelected({ piece: selectedPiece, i, j }),
                     onSelect: handlePieceSelect,

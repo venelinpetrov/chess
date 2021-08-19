@@ -82,12 +82,15 @@ export const movePiece = ({
 
     // Move the piece to the square with coordinates of [i, j]
     boardClone[i][j] = {
-      kind: piece.kind,
-      color: piece.color,
+      ...boardClone[i][j],
+      piece: {
+        kind: piece.kind,
+        color: piece.color
+      }
     };
 
     // Remove the piece from its previous square
-    boardClone[piece.coords[0]][piece.coords[1]] = null;
+    boardClone[piece.coords[0]][piece.coords[1]].piece = null;
     if (typeof cb == 'function') {
       cb(boardClone);
     }
